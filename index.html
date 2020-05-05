@@ -5,6 +5,9 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <!-- google login 을 위한 script -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="118808339623-5g4dt5jdsh07jcsnem00sppinb4b9mvc.apps.googleusercontent.com">
 
 </head>
 
@@ -20,6 +23,8 @@
                 </a>
                 <image class="oBtn" src="./image/naver_login_btn_medium_wide.png"></image>
             </div>
+            <!-- google login button (not customized yet) -->
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
     </div>
     <div class="footer">
@@ -39,6 +44,15 @@
                 console.log(JSON.stringify(err));
             },
         })
+    }
+
+    // google login 정보 출력해 주는 function
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     }
 </script>
 <script type="text/javascript" src="./js/index.js"></script>
